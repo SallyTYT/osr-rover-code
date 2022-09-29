@@ -1,7 +1,7 @@
 #include "OsrScreen.h"
 
 #include "Arduino.h"
-#include "../RGB_matrix_Panel/RGBmatrixPanel.h"
+#include "RGBmatrixPanel.h"
 
 
 
@@ -202,11 +202,25 @@ int* Screen::get_color(int num){
 }
 
 void Screen::display_face(int face){
-  if (face == 0x01){
-    eight_bit_face();
-  }
-  else if (face == 0x00){
+  // if (face == 0x01){
+  //   eight_bit_face();
+  // }
+  // else if (face == 0x00){
+  //   happy_face();
+  // }
+  switch (face)
+  {
+  case 0x01:
+    sleepy_face();
+    break;
+  case 0x02:
     happy_face();
+    break;
+  case 0x03:
+    eight_bit_face();
+    break;
+  default:
+    break;
   }
 }
 
@@ -313,43 +327,64 @@ void Screen::eight_bit_eye(int x, int y){
   RGBmatrixPanel::drawLine(x,y,x+1,y,RGBmatrixPanel::Color444(WHITE));
 }
     
-    
-void Screen::eight_bit_face(){
-	//clear_face();
-	int cheek_color[] = {15,0,0};
-	int mouth_color[] = {12,0,15};
-	eight_bit_eye(10,5);
-	eight_bit_eye(18,5);
-	circle_cheek(5,9,cheek_color);
-	circle_cheek(23,9,cheek_color);
-	happy_mouth(14,11,mouth_color);
-}
-    
-void Screen::happy_face(){
-	//clear_face();
+void Screen::happy_face(){      //0x01
+	// clear_face();
 	int eye_color[] = {3,0,15};
 	int mouth_color[] = {3,0,15};
 	int cheek_color[] = {12,0,15};
+  
+	// happy_eye(10,5,eye_color);
+	// happy_eye(18,5,eye_color);
+	// cute_mouth(14,12,mouth_color);
+	// cute_cheeks(7,9,cheek_color);
+	// cute_cheeks(22,9,cheek_color);
 
-	happy_eye(10,5,eye_color);
-	happy_eye(18,5,eye_color);
-	cute_mouth(14,12,mouth_color);
-	cute_cheeks(7,9,cheek_color);
-	cute_cheeks(22,9,cheek_color);
+  clear_face();
+	happy_eye(11,5,eye_color);
+	happy_eye(19,5,eye_color);
+	cute_mouth(15,12,mouth_color);
+	cute_cheeks(8,9,cheek_color);
+	cute_cheeks(23,9,cheek_color);
   
 }
     
-void Screen::sleepy_face(){
+void Screen::sleepy_face(){     //0x02
   int eye_color[] = {3,0,15};
   int mouth_color[] = {3,0,15};
   int cheek_color[] = {12,0,15};
-  sleepy_eye(10,5,eye_color);
-  sleepy_eye(18,5,eye_color);
-  cute_mouth(14,12,mouth_color);
-  cute_cheeks(7,9,cheek_color);
-  cute_cheeks(22,9,cheek_color);
+  // sleepy_eye(10,5,eye_color);
+  // sleepy_eye(18,5,eye_color);
+  // cute_mouth(14,12,mouth_color);
+  // cute_cheeks(7,9,cheek_color);
+  // cute_cheeks(22,9,cheek_color);
+
+  clear_face();
+  sleepy_eye(11,5,eye_color);
+  sleepy_eye(19,5,eye_color);
+  cute_mouth(15,12,mouth_color);
+  cute_cheeks(8,9,cheek_color);
+  cute_cheeks(23,9,cheek_color);
 }
-    
+
+void Screen::eight_bit_face(){  //0x03
+  // clear_face();
+	int cheek_color[] = {15,0,0};
+	int mouth_color[] = {12,0,15};
+  
+	// eight_bit_eye(10,5);
+	// eight_bit_eye(18,5);
+	// circle_cheek(5,9,cheek_color);
+	// circle_cheek(23,9,cheek_color);
+	// happy_mouth(14,11,mouth_color);
+
+  clear_face();
+  eight_bit_eye(11,5);
+	eight_bit_eye(19,5);
+	circle_cheek(6,9,cheek_color);
+	circle_cheek(24,9,cheek_color);
+	happy_mouth(15,11,mouth_color);
+}
+
 void Screen::clear_face(){
   RGBmatrixPanel::fillRect(0,2,31,15,RGBmatrixPanel::Color444(BLACK));
 }
@@ -366,7 +401,8 @@ void Screen::update_screen(int message[]){
 
     display_temp(temp);
     display_currents(drive,steer);
-    //display_face(message[FACE_POS]);
+    
+    display_face(message[FACE_POS]);
     //happy_face();
   }
 }

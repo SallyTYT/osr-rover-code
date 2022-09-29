@@ -67,7 +67,7 @@ class LedScreen():
 			self.out_msg[CONN] = 0x00
 		
 	def battery_check(self,battery):
-		battery *= 0.1 
+#		battery *= 0.1 
 		if   (self.b_high - (self.b_range * 1/5) <= battery):
 			self.out_msg[BATT] = 0x1F
 		elif (self.b_high - (self.b_range * 2/5) <= battery):
@@ -93,7 +93,8 @@ class LedScreen():
 		for i in range(3):
 			result = 0
 			for j in range(2):
-				val = temperature[i][j] * 0.1
+#				val = temperature[i][j] * 0.1
+				val = temperature[i][j]
 				if val == 0:
 					tmp = 0x00
 				else:
@@ -116,7 +117,8 @@ class LedScreen():
 		for i in range(3):
 			result = 0
 			for j in range(2):
-				val = currents[i][j] * 0.1
+#				val = currents[i][j] * 0.1
+				val = currents[i][j]
 				if   (self.c_high - (self.c_range * 1/5) <= val):
 					tmp = 0x4
 				elif (self.c_high - (self.c_range * 2/5) <= val):
@@ -137,7 +139,8 @@ class LedScreen():
 		for i in range(2):
 			result = 0
 			for j in range(2):
-				val = currents[i][j] * 0.1
+#				val = currents[i][j] * 0.1
+				val = currents[i][j]
 				if   (self.c_high - (self.c_range * 1/5) <= val):
 					tmp = 0x4
 				elif (self.c_high - (self.c_range * 2/5) <= val):

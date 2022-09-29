@@ -1,7 +1,7 @@
 #ifndef OsrScreen
 #define OsrScreen
 
-#include "../RGB_matrix_Panel/RGBmatrixPanel.h"
+#include "RGBmatrixPanel.h"
 
 
 #define BIT_MAX  				15
@@ -83,9 +83,11 @@ public:
     void cute_mouth(int,int,int[]);
     void cute_cheeks(int,int,int[]);
     void eight_bit_eye(int,int);
-    void eight_bit_face();
-    void happy_face();
-    void sleepy_face();
+
+    void happy_face();      //0x01
+    void sleepy_face();     //0x02
+    void eight_bit_face();  //0x03
+
     void clear_face();
 
     void update_screen(int[]);
