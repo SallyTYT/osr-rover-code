@@ -44,14 +44,14 @@ class Screen: public RGBmatrixPanel {
 
     int TEST_MODE			= 0;
     int state				= IDLE;
-    int BATTERY[2] 			= {0,0};
-    int CONNECT[2] 			= {0,1};
-    int STATUS[2]  			= {6,0};
-    int TEMP[2]    			= {12,0};
-    int DRIVE_CURRENT[2] 	= {19,0};
-    int STEER_CURRENT[2] 	= {26,0};
+    int CONNECT[2] 			= {0,0};    // {0,1};
+    int BATTERY[2] 			= {3,0};    // {0,0};
+    int STATUS[2]  			= {9,0};    // {6,0};
+    int TEMP[2]    			= {15,0};   // {12,0};
+    int DRIVE_CURRENT[2] 	= {21,0};   // {19,0};
+    int STEER_CURRENT[2] 	= {28,0};   // {26,0};
     int DEBUG[2]         	= {0,8};
-    int STATE[2]          	= {1,1};
+    int STATE[2]          	= {1,0};    // {1,1};
 
 public:
     
