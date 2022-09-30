@@ -388,7 +388,6 @@ void Screen::eight_bit_face(){  //0x03
 }
 
 void Screen::osr_screen_face(int face_index){
-  clear_face();
 	RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
 }
 
