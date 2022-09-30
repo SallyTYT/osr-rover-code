@@ -87,6 +87,7 @@ public:
     void happy_face();      //0x01
     void sleepy_face();     //0x02
     void eight_bit_face();  //0x03
+    void osr_screen_face(int);
 
     void clear_face();
 

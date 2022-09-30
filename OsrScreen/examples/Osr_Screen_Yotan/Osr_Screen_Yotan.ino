@@ -9,15 +9,17 @@
 
 #include <RGBmatrixPanel.h>
 #include <OsrScreen.h>
+#include <Osr_Screen_Face.h>
 
 Screen screen(1);
 int* data = 0;
+
 void setup() 
 {
   Serial.begin(9600);
   screen.init_display();
 
-  // screen.RGBmatrixPanel::begin();
+//    screen.RGBmatrixPanel::begin();
 }
 
 void loop() 
@@ -26,13 +28,7 @@ void loop()
   if (data){
     screen.update_screen(data);
   }
-  data = 0;
-
-  // screen.eight_bit_face();
-  // delay(1000);
-  // screen.happy_face();
-  // delay(1000);
-  // screen.sleepy_face();
-  // delay(1000);
-  
-}  
+ data = 0;
+ 
+//    screen.RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
+}

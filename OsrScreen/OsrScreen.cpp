@@ -1,5 +1,6 @@
 #include "OsrScreen.h"
 
+#include "Osr_Screen_Face.h"
 #include "Arduino.h"
 #include "RGBmatrixPanel.h"
 
@@ -201,26 +202,27 @@ int* Screen::get_color(int num){
   return color;
 }
 
-void Screen::display_face(int face){
+void Screen::display_face(int face_index){
   // if (face == 0x01){
   //   eight_bit_face();
   // }
   // else if (face == 0x00){
   //   happy_face();
   // }
-  switch (face)
+  switch (face_index)
   {
-  case 0x01:
-    sleepy_face();
-    break;
-  case 0x02:
-    happy_face();
-    break;
-  case 0x03:
-    eight_bit_face();
-    break;
-  default:
-    break;
+    case 0x01:
+      sleepy_face();
+      break;
+    case 0x02:
+      happy_face();
+      break;
+    case 0x03:
+      eight_bit_face();
+      break;
+    default:
+      osr_screen_face(face_index);
+      break;
   }
 }
 
@@ -385,10 +387,19 @@ void Screen::eight_bit_face(){  //0x03
 	happy_mouth(15,11,mouth_color);
 }
 
-void Screen::clear_face(){
-  RGBmatrixPanel::fillRect(0,2,31,15,RGBmatrixPanel::Color444(BLACK));
+void Screen::osr_screen_face(int face_index){
+  clear_face();
+	RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
 }
-    
+
+
+
+void Screen::clear_face(){
+  RGBmatrixPanel::fillRect(0,1,31,15,RGBmatrixPanel::Color444(BLACK));
+}
+
+
+
 void Screen::update_screen(int message[]){
   if ((preamble_check(message) && chksum_check(message)) || TEST_MODE){
     connected_status(message[CONNECTED_POS]);

@@ -19,7 +19,7 @@ STEER_CUR = 11
 FACE      = 13
 CHKSUM    = 14
 
-NUMOFSUPPORTEDFACE = 3
+NUMOFSUPPORTEDFACE = 4
 
 class LedScreen():
 	def __init__(self):
