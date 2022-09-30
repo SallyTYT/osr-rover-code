@@ -19,6 +19,8 @@ STEER_CUR = 11
 FACE      = 13
 CHKSUM    = 14
 
+NUMOFSUPPORTEDFACE = 3
+
 class LedScreen():
 	def __init__(self):
 		dev = "/dev/ttyUSB0"
@@ -46,7 +48,10 @@ class LedScreen():
 		self.out_msg[0] = PREAMBLE_HIGH
 		self.out_msg[1] = PREAMBLE_LOW
 		
+		self.face_index = 0x00			# 20220930
+		
 		self.send_init()
+		self.switch_face()
 
 	def build_msg(self,connected,battery,error,temp,currents):
 		self.connected_check(1)
@@ -55,10 +60,16 @@ class LedScreen():
 		self.temp_check(temp)
 		self.drive_current_check(currents)
 		self.steering_current_check(currents)
-		self.out_msg[FACE] = 0x01
+		# self.out_msg[FACE] = 0x01     # 20220930
 		self.build_chksum()
 		print self.out_msg
 		self.send_msg()
+	
+	def switch_face(self):				# 20220930
+		self.face_index += 1
+		if (self.face_index > NUMOFSUPPORTEDFACE or self.face_index > 255):
+			self.face_index = 0x01
+		self.out_msg[FACE] = self.face_index
 		
 	def connected_check(self,connected):
 		if (connected):
@@ -67,7 +78,7 @@ class LedScreen():
 			self.out_msg[CONN] = 0x00
 		
 	def battery_check(self,battery):
-#		battery *= 0.1 
+		# battery *= 0.1    # 20220929
 		if   (self.b_high - (self.b_range * 1/5) <= battery):
 			self.out_msg[BATT] = 0x1F
 		elif (self.b_high - (self.b_range * 2/5) <= battery):
@@ -93,8 +104,8 @@ class LedScreen():
 		for i in range(3):
 			result = 0
 			for j in range(2):
-#				val = temperature[i][j] * 0.1
-				val = temperature[i][j]
+				# val = temperature[i][j] * 0.1     # 20220929
+				val = temperature[i][j]             # 20220929
 				if val == 0:
 					tmp = 0x00
 				else:
@@ -117,8 +128,8 @@ class LedScreen():
 		for i in range(3):
 			result = 0
 			for j in range(2):
-#				val = currents[i][j] * 0.1
-				val = currents[i][j]
+				# val = currents[i][j] * 0.1        # 20220929
+				val = currents[i][j]                # 20220929
 				if   (self.c_high - (self.c_range * 1/5) <= val):
 					tmp = 0x4
 				elif (self.c_high - (self.c_range * 2/5) <= val):
@@ -139,8 +150,8 @@ class LedScreen():
 		for i in range(2):
 			result = 0
 			for j in range(2):
-#				val = currents[i][j] * 0.1
-				val = currents[i][j]
+                                # val = currents[i][j] * 0.1        # 20220929
+				val = currents[i][j]                # 20220929
 				if   (self.c_high - (self.c_range * 1/5) <= val):
 					tmp = 0x4
 				elif (self.c_high - (self.c_range * 2/5) <= val):
@@ -155,7 +166,7 @@ class LedScreen():
 				result += tmp
 			self.out_msg[STEER_CUR + i] = result		
 	
-	def transition_to_idle(self):
+	def transistion_to_idle(self):
 		self.out_msg[CONN] = 0xFF
 		self.build_chksum()
 		self.send_msg()
