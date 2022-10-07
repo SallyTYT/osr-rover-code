@@ -6,9 +6,12 @@ from osr_msgs.msg import Status
 from sensor_msgs.msg import Joy
 from screen import LedScreen
 
-screen = LedScreen()
+SWITCH_FACE_INC = 1			# Button B to swtich face (increment)
+SWITCH_FACE_DEC = 2			# Button X to swtich face (decrement)
+SWITCH_FACE_PAGE_INC = 3	# Button Y to swtich face page (increment)
+SWITCH_FACE_PAGE_DEC = 0	# Button A to swtich face page (decrement)
 
-FACE_BUTTON_INDEX = 1	# Button B to swtich face, 20220930
+screen = LedScreen()
 
 def callback_status(data):
 	#rospy.loginfo(data)
@@ -28,9 +31,17 @@ def callback_status(data):
 	# TEST 20220929 END
 
 def callback_joy(data):
-	val = data.buttons[FACE_BUTTON_INDEX]
-	if (val != 0):
-		screen.switch_face()
+	if (data.buttons[SWITCH_FACE_INC] != 0):
+		screen.switch_face(SWITCH_FACE_INC)
+		
+	if (data.buttons[SWITCH_FACE_DEC] != 0):
+		screen.switch_face(SWITCH_FACE_DEC)
+
+	if (data.buttons[SWITCH_FACE_PAGE_INC] != 0):
+		screen.switch_face(SWITCH_FACE_PAGE_INC)
+
+	if (data.buttons[SWITCH_FACE_PAGE_DEC] != 0):
+		screen.switch_face(SWITCH_FACE_PAGE_DEC)
 	# print data
 	
 def shutdown():

@@ -19,8 +19,6 @@ STEER_CUR = 11
 FACE      = 13
 CHKSUM    = 14
 
-NUMOFSUPPORTEDFACE = 4
-
 class LedScreen():
 	def __init__(self):
 		dev = "/dev/ttyUSB0"
@@ -48,7 +46,8 @@ class LedScreen():
 		self.out_msg[0] = PREAMBLE_HIGH
 		self.out_msg[1] = PREAMBLE_LOW
 		
-		self.face_index = 0x00			# 20220930
+		# self.face_index = 0x00			# 20220930
+		self.out_msg[FACE] = 0xFF     		# 20221007
 		
 		self.send_init()
 		self.switch_face()
@@ -64,12 +63,10 @@ class LedScreen():
 		self.build_chksum()
 		print self.out_msg
 		self.send_msg()
+		self.out_msg[FACE] = 0xFF     		# 20221007 clear switch face command
 	
-	def switch_face(self):				# 20220930
-		self.face_index += 1
-		if (self.face_index > NUMOFSUPPORTEDFACE or self.face_index > 255):
-			self.face_index = 0x01
-		self.out_msg[FACE] = self.face_index
+	def switch_face(self,switch_cmd):		# 20220930		# 20221007
+		self.out_msg[FACE] = switch_cmd
 		
 	def connected_check(self,connected):
 		if (connected):

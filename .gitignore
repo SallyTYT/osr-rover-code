@@ -4,3 +4,6 @@ ROS/osr_bringup/config/*_mod.yaml
 *.sublime-project
 *.sublime-workspace
 **/_TEST/**
+*.aliases
+*.lvlps
+OsrScreen/Osr_Screen_Face/Images/**

@@ -30,6 +30,10 @@
 #define RUNNING					0x00
 #define IDLE					0x01
 
+#define SWITCH_FACE_INC         1	// Button B to swtich face (increment)
+#define SWITCH_FACE_DEC         2	// Button X to swtich face (decrement)
+#define SWITCH_FACE_PAGE_INC    3	// Button Y to swtich face page (increment)
+#define SWITCH_FACE_PAGE_DEC    0	// Button A to swtich face page (decrement)
 
 class Screen: public RGBmatrixPanel {
 	int timeout;
@@ -41,6 +45,9 @@ class Screen: public RGBmatrixPanel {
 	int l_brow[2];
 	int r_brow[2];
 	int* data = new int[16];
+
+    int face_index = 0;
+    int face_page_index = 0;
 
     int TEST_MODE			= 0;
     int state				= IDLE;
@@ -71,7 +78,7 @@ public:
     void display_state();
     void display_battery(int);
     int* get_color(int);
-    void display_face(int);
+    // void display_face(int);
     void display_temp(int[]);
     void display_status(int);
     void display_currents(int[], int[]);
@@ -87,13 +94,17 @@ public:
     void happy_face();      //0x01
     void sleepy_face();     //0x02
     void eight_bit_face();  //0x03
-    void osr_screen_face(int);
 
     void clear_face();
+
+    void display_face(int);
+    void face_page_origin();
+    void face_page_osr_screen_emoji();
 
     void update_screen(int[]);
 
 };
+
 #endif
 
 
