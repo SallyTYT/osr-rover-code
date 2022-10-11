@@ -29,7 +29,6 @@ class LedScreen():
 		self.out_msg = [-10] * 16
 		self.in_msg  = [-10] * 16
 
-
 		self.b_low = 12.7
 		self.b_high = 16.7
 		self.b_range = self.b_high - self.b_low
@@ -50,7 +49,7 @@ class LedScreen():
 		self.out_msg[FACE] = 0xFF     		# 20221007
 		
 		self.send_init()
-		self.switch_face()
+		
 
 	def build_msg(self,connected,battery,error,temp,currents):
 		self.connected_check(1)
@@ -63,7 +62,7 @@ class LedScreen():
 		self.build_chksum()
 		print self.out_msg
 		self.send_msg()
-		self.out_msg[FACE] = 0xFF     		# 20221007 clear switch face command
+		self.switch_face(0xFF)	     		# 20221007 clear switch face command
 	
 	def switch_face(self,switch_cmd):		# 20220930		# 20221007
 		self.out_msg[FACE] = switch_cmd
@@ -147,7 +146,7 @@ class LedScreen():
 		for i in range(2):
 			result = 0
 			for j in range(2):
-                                # val = currents[i][j] * 0.1        # 20220929
+				# val = currents[i][j] * 0.1        # 20220929
 				val = currents[i][j]                # 20220929
 				if   (self.c_high - (self.c_range * 1/5) <= val):
 					tmp = 0x4

@@ -9,6 +9,10 @@
 Screen::Screen(int t) : RGBmatrixPanel(14,15,16,8,10,9,false)
 {
 	timeout = t;
+
+  face_index = 0;
+  face_page_index = 0;
+  face_mode = 1;  // 0, face only mode / 1, debug mode
 }
 
 void Screen::init_display()
@@ -28,6 +32,7 @@ void Screen::init_display()
 	sleepy_face();
 	
 	RGBmatrixPanel::begin();
+  // RGBmatrixPanel::swapBuffers(true);
 	Serial.flush();
 }
 
@@ -250,13 +255,245 @@ void Screen::display_currents(int drive_current[],int steering_current[]){
 
 
 
+/**********************************************************************/
+// for FACE
+/**********************************************************************/
+
+void Screen::clear_face(){
+  RGBmatrixPanel::fillRect(0,face_mode,32,16-face_mode,RGBmatrixPanel::Color444(BLACK));
+  // RGBmatrixPanel::fillScreen(RGBmatrixPanel::Color444(BLACK));
+}
+
+
+void Screen::display_face(int switch_face_cmd){
+  switch (switch_face_cmd)
+  {
+    case 0xFF:
+      break;
+    case SWITCH_FACE_INC:         // Button B to swtich face (increment)
+      face_index += 1;
+      clear_face();
+      break;
+    case SWITCH_FACE_DEC:         // Button X to swtich face (decrement)
+      face_index -= 1;
+      clear_face();
+      break;
+    case SWITCH_FACE_PAGE_INC:    // Button Y to swtich face page (increment)
+      face_page_index += 1;
+      clear_face();
+      break;
+    case SWITCH_FACE_PAGE_DEC:    // Button A to swtich face page (decrement)
+      face_page_index -= 1;
+      clear_face();
+      break;
+    case SWITCH_FACE_MODE:        // Button START to swtich face mode - 0, face only mode / 1, debug mode
+      face_mode = 1 - face_mode;
+      clear_face();
+      break;
+    default:
+      break;
+  }
+
+  switch (face_page_index)
+  {
+    case 0:
+      face_page_0_origin();
+      break;
+    case 1:
+      face_page_1_osr_screen_emoji();
+      break;
+    case 2:
+      face_page_2_emoticon();
+      break;
+    default:
+      if (face_page_index < 0) face_page_index = 2;
+      else face_page_index = 0;
+      break;
+  }
+}
+
+void Screen::face_page_0_origin(){
+	switch (face_index)
+  {
+    case 0:
+      sleepy_face();
+      break;
+    case 1: 
+      happy_face();
+      break;
+    case 2:
+      eight_bit_face();
+      break;
+    case 3:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
+      emoticon_print_green(2, 6, 1, "NI");
+      break;
+    default:
+      if (face_index < 0) face_index = 3;
+      else face_index = 0;
+      break;
+  }
+}
+
+void Screen::face_page_1_osr_screen_emoji(){
+	switch (face_index)
+  {
+    case 0:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_0, 32, 15);
+      break;
+    case 1:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_1, 32, 15);
+      break;
+    case 2:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_2, 32, 15);
+      break;
+    case 3:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_3, 32, 15);
+      break;
+    case 4:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_4, 32, 15);
+      break;
+    case 5:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_5, 32, 15);
+      break;
+    // case 6:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_6, 32, 15);
+    //   break;
+    // case 7:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_7, 32, 15);
+    //   break;
+    // case 8:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_8, 32, 15);
+    //   break;
+    // case 9:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_9, 32, 15);
+    //   break;
+    // case 10:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_10, 32, 15);
+    //   break;
+    // case 11:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_11, 32, 15);
+    //   break;
+    // case 12:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_12, 32, 15);
+    //   break;
+    // case 13:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_13, 32, 15);
+    //   break;
+    // case 14:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_14, 32, 15);
+    //   break;
+    // case 15:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_15, 32, 15);
+    //   break;
+    // case 16:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_16, 32, 15);
+    //   break;
+    // case 17:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_17, 32, 15);
+    //   break;
+    // case 18:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_18, 32, 15);
+    //   break;
+    // case 19:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_19, 32, 15);
+    //   break;
+    // case 20:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_20, 32, 15);
+    //   break;
+    // case 21:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_21, 32, 15);
+    //   break;
+    // case 22:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_22, 32, 15);
+    //   break;
+    // case 23:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_23, 32, 15);
+    //   break;
+    // case 24:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_24, 32, 15);
+    //   break;
+    // case 25:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_25, 32, 15);
+    //   break;
+    // case 26:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_26, 32, 15);
+    //   break;
+    // case 27:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_27, 32, 15);
+    //   break;
+    // case 28:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_28, 32, 15);
+    //   break;
+    // case 29:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_29, 32, 15);
+    //   break;
+    default:
+      if (face_index < 0) face_index = 5; // 29;
+      else face_index = 0;
+      break;
+  }
+}
+
+
+void Screen::face_page_2_emoticon(){
+  switch (face_index)
+  {
+    case 0:
+      emoticon_print_green(2, 6, 1, "NI");
+      // RGBmatrixPanel::setTextSize(2);
+      // RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(GREEN));
+      // RGBmatrixPanel::setCursor(6,1);
+      // RGBmatrixPanel::print("NI");
+      break;
+    case 1:
+      emoticon_print_white(1, 7, 4, "ORZ");
+      break;
+    case 2:
+      // emoticon_print_white(1, 0, 4, "(╯°Д°)╯");
+      break;
+    default:
+      if (face_index < 0) face_index = 2;
+      else face_index = 0;
+      break;
+  }
+}
+
+
+void Screen::update_screen(int message[]){
+  if ((preamble_check(message) && chksum_check(message)) || TEST_MODE){
+    
+    display_face(message[FACE_POS]);
+
+    if (face_mode){                                 // 0, face only mode / 1, debug mode
+      connected_status(message[CONNECTED_POS]);
+      display_status(message[STATUS_POS]);
+      display_battery(message[BATTERY_POS]);
+
+      int temp[]  = {(message[5] & 0x0F),(message[6] & 0xF0) >> 4,(message[6] & 0x0F),(message[7] & 0xF0) >> 4,(message[7] & 0x0F)};
+      int drive[] = {(message[8] & 0xF0) >> 4,(message[8] & 0x0F),(message[9] & 0xF0) >> 4,(message[9] & 0x0F),(message[10] & 0xF0) >> 4,(message[10] & 0x0F)};
+      int steer[] = {(message[11] & 0xF0) >> 4,(message[11] & 0x0F),(message[12] & 0xF0) >> 4,(message[12] & 0x0F),(message[13] & 0xF0) >> 4,(message[13] & 0x0F)};
+
+      display_temp(temp);
+      display_currents(drive,steer);
+    }
+
+    // RGBmatrixPanel::swapBuffers(true);
+  
+  }
+}
+
+
+
+/**********************************************************************/
+// for face_page_0_origin()
+/**********************************************************************/
 
 void Screen::happy_eye(int x, int y, int rgb[]){
   RGBmatrixPanel::drawLine(x-2,y,x,y-2,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
   RGBmatrixPanel::drawLine(x+1,y-2,x+3,y,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
   
 }
-
 
 void Screen::sleepy_eye(int x, int y, int rgb[]){
   RGBmatrixPanel::drawLine(x-2,y,x+2,y,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
@@ -276,7 +513,6 @@ void Screen::circle_cheek(int x, int y, int rgb[]){
   RGBmatrixPanel::drawLine(x,y-1,x+1,y-1,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
   RGBmatrixPanel::drawLine(x,y+2,x+1,y+2,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
 }
-
 
 void Screen::cute_mouth(int x, int y, int rgb[]){
   RGBmatrixPanel::drawLine(x-4,y,x-2,y+2,RGBmatrixPanel::Color444(rgb[0],rgb[1],rgb[2]));
@@ -317,13 +553,12 @@ void Screen::happy_face(){      //0x01
 	// cute_cheeks(7,9,cheek_color);
 	// cute_cheeks(22,9,cheek_color);
 
-  clear_face();
-	happy_eye(11,5,eye_color);
-	happy_eye(19,5,eye_color);
-	cute_mouth(15,12,mouth_color);
-	cute_cheeks(8,9,cheek_color);
-	cute_cheeks(23,9,cheek_color);
-  
+  // clear_face();
+	happy_eye(11,4+face_mode,eye_color);
+	happy_eye(19,4+face_mode,eye_color);
+	cute_mouth(15,11+face_mode,mouth_color);
+	cute_cheeks(8,8+face_mode,cheek_color);
+	cute_cheeks(23,8+face_mode,cheek_color);
 }
     
 void Screen::sleepy_face(){     //0x02
@@ -336,12 +571,12 @@ void Screen::sleepy_face(){     //0x02
   // cute_cheeks(7,9,cheek_color);
   // cute_cheeks(22,9,cheek_color);
 
-  clear_face();
-  sleepy_eye(11,5,eye_color);
-  sleepy_eye(19,5,eye_color);
-  cute_mouth(15,12,mouth_color);
-  cute_cheeks(8,9,cheek_color);
-  cute_cheeks(23,9,cheek_color);
+  // clear_face();
+  sleepy_eye(11,4+face_mode,eye_color);
+  sleepy_eye(19,4+face_mode,eye_color);
+  cute_mouth(15,11+face_mode,mouth_color);
+  cute_cheeks(8,8+face_mode,cheek_color);
+  cute_cheeks(23,8+face_mode,cheek_color);
 }
 
 void Screen::eight_bit_face(){  //0x03
@@ -355,195 +590,29 @@ void Screen::eight_bit_face(){  //0x03
 	// circle_cheek(23,9,cheek_color);
 	// happy_mouth(14,11,mouth_color);
 
-  clear_face();
-  eight_bit_eye(11,5);
-	eight_bit_eye(19,5);
-	circle_cheek(6,9,cheek_color);
-	circle_cheek(24,9,cheek_color);
-	happy_mouth(15,11,mouth_color);
-}
-
-
-void Screen::clear_face(){
-  RGBmatrixPanel::fillRect(0,1,31,15,RGBmatrixPanel::Color444(BLACK));
+  // clear_face();
+  eight_bit_eye(11,4+face_mode);
+	eight_bit_eye(19,4+face_mode);
+	circle_cheek(6,8+face_mode,cheek_color);
+	circle_cheek(24,8+face_mode,cheek_color);
+	happy_mouth(15,10+face_mode,mouth_color);
 }
 
 
 
-void Screen::display_face(int switch_face_cmd){
-  switch (switch_face_cmd)
-  {
-    case 0xFF:
-      break;
-    case SWITCH_FACE_INC:
-      face_index += 1;
-      break;
-    case SWITCH_FACE_DEC:
-      face_index -= 1;
-      break;
-    case SWITCH_FACE_PAGE_INC:
-      face_page_index += 1;
-      break;
-    case SWITCH_FACE_PAGE_DEC:
-      face_page_index -= 1;
-      break;
-    default:
-      break;
-  }
-
-  switch (face_page_index)
-  {
-    case 0:
-      face_page_origin();
-      break;
-    case 1:
-      face_page_origin();
-      break;
-    default:
-      if (face_page_index < 0) face_page_index = 1;
-      else face_page_index = 0;
-      break;
-  }
+/**********************************************************************/
+// for face_page_2_emoticon()
+/**********************************************************************/
+void Screen::emoticon_print_green(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
+  RGBmatrixPanel::setTextSize(size);
+  RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::setCursor(cursor_x,cursor_y);
+  RGBmatrixPanel::print(emoticon);
 }
 
-void Screen::face_page_origin(){
-	switch (face_index)
-  {
-    case 0:
-      sleepy_face();
-      break;
-    case 1: 
-      happy_face();
-      break;
-    case 2:
-      eight_bit_face();
-      break;
-    case 3:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
-      break;
-    default:
-      if (face_index < 0) face_index = 3;
-      else face_index = 0;
-      break;
-  }
-}
-
-void Screen::face_page_osr_screen_emoji(){
-	switch (face_index)
-  {
-    case 0:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_0, 32, 15);
-      break;
-    case 1:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_1, 32, 15);
-      break;
-    case 2:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_2, 32, 15);
-      break;
-    case 3:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_3, 32, 15);
-      break;
-    case 4:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_4, 32, 15);
-      break;
-    case 5:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_5, 32, 15);
-      break;
-    case 6:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_6, 32, 15);
-      break;
-    case 7:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_7, 32, 15);
-      break;
-    case 8:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_8, 32, 15);
-      break;
-    case 9:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_9, 32, 15);
-      break;
-    case 10:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_10, 32, 15);
-      break;
-    case 11:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_11, 32, 15);
-      break;
-    case 12:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_12, 32, 15);
-      break;
-    case 13:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_13, 32, 15);
-      break;
-    case 14:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_14, 32, 15);
-      break;
-    case 15:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_15, 32, 15);
-      break;
-    case 16:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_16, 32, 15);
-      break;
-    case 17:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_17, 32, 15);
-      break;
-    case 18:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_18, 32, 15);
-      break;
-    case 19:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_19, 32, 15);
-      break;
-    case 20:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_20, 32, 15);
-      break;
-    case 21:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_21, 32, 15);
-      break;
-    case 22:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_22, 32, 15);
-      break;
-    case 23:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_23, 32, 15);
-      break;
-    case 24:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_24, 32, 15);
-      break;
-    case 25:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_25, 32, 15);
-      break;
-    case 26:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_26, 32, 15);
-      break;
-    case 27:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_27, 32, 15);
-      break;
-    case 28:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_28, 32, 15);
-      break;
-    case 29:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_29, 32, 15);
-      break;
-    default:
-      if (face_index < 0) face_index = 29;
-      else face_index = 0;
-      break;
-  }
-}
-
-
-
-void Screen::update_screen(int message[]){
-  if ((preamble_check(message) && chksum_check(message)) || TEST_MODE){
-    connected_status(message[CONNECTED_POS]);
-    display_status(message[STATUS_POS]);
-    display_battery(message[BATTERY_POS]);
-
-    int temp[]  = {(message[5] & 0x0F),(message[6] & 0xF0) >> 4,(message[6] & 0x0F),(message[7] & 0xF0) >> 4,(message[7] & 0x0F)};
-    int drive[] = {(message[8] & 0xF0) >> 4,(message[8] & 0x0F),(message[9] & 0xF0) >> 4,(message[9] & 0x0F),(message[10] & 0xF0) >> 4,(message[10] & 0x0F)};
-    int steer[] = {(message[11] & 0xF0) >> 4,(message[11] & 0x0F),(message[12] & 0xF0) >> 4,(message[12] & 0x0F),(message[13] & 0xF0) >> 4,(message[13] & 0x0F)};
-
-    display_temp(temp);
-    display_currents(drive,steer);
-    
-    display_face(message[FACE_POS]);
-    //happy_face();
-  }
+void Screen::emoticon_print_white(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
+  RGBmatrixPanel::setTextSize(size);
+  RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::setCursor(cursor_x,cursor_y);
+  RGBmatrixPanel::print(emoticon);
 }

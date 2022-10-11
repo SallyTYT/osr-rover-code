@@ -34,6 +34,8 @@
 #define SWITCH_FACE_DEC         2	// Button X to swtich face (decrement)
 #define SWITCH_FACE_PAGE_INC    3	// Button Y to swtich face page (increment)
 #define SWITCH_FACE_PAGE_DEC    0	// Button A to swtich face page (decrement)
+#define SWITCH_FACE_MODE        7	// Button START to swtich face mode - debug / face only
+
 
 class Screen: public RGBmatrixPanel {
 	int timeout;
@@ -48,6 +50,7 @@ class Screen: public RGBmatrixPanel {
 
     int face_index = 0;
     int face_page_index = 0;
+    int face_mode = 1;  // 0, face only mode / 1, debug mode
 
     int TEST_MODE			= 0;
     int state				= IDLE;
@@ -83,6 +86,22 @@ public:
     void display_status(int);
     void display_currents(int[], int[]);
 
+
+/**********************************************************************/
+// for FACE
+/**********************************************************************/
+    void clear_face();
+
+    void display_face(int);
+    void face_page_0_origin();
+    void face_page_1_osr_screen_emoji();
+    void face_page_2_emoticon();
+
+    void update_screen(int[]);
+
+/**********************************************************************/
+// for face_page_0_origin()
+/**********************************************************************/
     void happy_eye(int, int, int[]);
     void sleepy_eye(int, int, int[]);
     void happy_mouth(int, int, int[]);
@@ -90,18 +109,15 @@ public:
     void cute_mouth(int,int,int[]);
     void cute_cheeks(int,int,int[]);
     void eight_bit_eye(int,int);
+    void happy_face();
+    void sleepy_face();
+    void eight_bit_face();
 
-    void happy_face();      //0x01
-    void sleepy_face();     //0x02
-    void eight_bit_face();  //0x03
-
-    void clear_face();
-
-    void display_face(int);
-    void face_page_origin();
-    void face_page_osr_screen_emoji();
-
-    void update_screen(int[]);
+/**********************************************************************/
+// for face_page_2_emoticon()
+/**********************************************************************/
+    void emoticon_print_green(uint8_t, int16_t, int16_t, String);
+    void emoticon_print_white(uint8_t, int16_t, int16_t, String);
 
 };
 

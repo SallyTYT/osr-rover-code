@@ -10,6 +10,7 @@ SWITCH_FACE_INC = 1			# Button B to swtich face (increment)
 SWITCH_FACE_DEC = 2			# Button X to swtich face (decrement)
 SWITCH_FACE_PAGE_INC = 3	# Button Y to swtich face page (increment)
 SWITCH_FACE_PAGE_DEC = 0	# Button A to swtich face page (decrement)
+SWITCH_FACE_MODE = 7		# Button START to swtich face mode - 0, face only mode / 1, debug mode
 
 screen = LedScreen()
 
@@ -42,7 +43,9 @@ def callback_joy(data):
 
 	if (data.buttons[SWITCH_FACE_PAGE_DEC] != 0):
 		screen.switch_face(SWITCH_FACE_PAGE_DEC)
-	# print data
+
+	if (data.buttons[SWITCH_FACE_MODE] != 0):
+		screen.switch_face(SWITCH_FACE_MODE)
 	
 def shutdown():
 	screen.transistion_to_idle()
