@@ -266,49 +266,56 @@ void Screen::clear_face(){
 
 
 void Screen::display_face(int switch_face_cmd){
+
+  int update_face = 0;
+
   switch (switch_face_cmd)
   {
     case 0xFF:
       break;
     case SWITCH_FACE_INC:         // Button B to swtich face (increment)
       face_index += 1;
-      clear_face();
+      update_face = 1;
       break;
     case SWITCH_FACE_DEC:         // Button X to swtich face (decrement)
       face_index -= 1;
-      clear_face();
+      update_face = 1;
       break;
     case SWITCH_FACE_PAGE_INC:    // Button Y to swtich face page (increment)
       face_page_index += 1;
-      clear_face();
+      update_face = 1;
       break;
     case SWITCH_FACE_PAGE_DEC:    // Button A to swtich face page (decrement)
       face_page_index -= 1;
-      clear_face();
+      update_face = 1;
       break;
     case SWITCH_FACE_MODE:        // Button START to swtich face mode - 0, face only mode / 1, debug mode
       face_mode = 1 - face_mode;
-      clear_face();
+      update_face = 1;
       break;
     default:
       break;
   }
 
-  switch (face_page_index)
-  {
-    case 0:
-      face_page_0_origin();
-      break;
-    case 1:
-      face_page_1_osr_screen_emoji();
-      break;
-    case 2:
-      face_page_2_emoticon();
-      break;
-    default:
-      if (face_page_index < 0) face_page_index = 2;
-      else face_page_index = 0;
-      break;
+  if (update_face) {
+    clear_face();
+    switch (face_page_index)
+    {
+      case 0:
+        face_page_0_origin();
+        break;
+      case 1:
+        face_page_1_osr_screen_emoji();
+        break;
+      case 2:
+        face_page_2_emoticon();
+        break;
+      default:
+        if (face_page_index < 0) face_page_index = 2;
+        else face_page_index = 0;
+        break;
+    }
+    
   }
 }
 
