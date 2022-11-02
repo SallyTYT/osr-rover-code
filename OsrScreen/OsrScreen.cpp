@@ -299,6 +299,12 @@ void Screen::display_face(int switch_face_cmd){
 
   if (update_face) {
     clear_face();
+
+    int number_of_page = 1;
+
+    if (face_page_index < 0) face_page_index = number_of_page;
+    if (face_page_index > number_of_page) face_page_index = 0;
+    
     switch (face_page_index)
     {
       case 0:
@@ -307,12 +313,10 @@ void Screen::display_face(int switch_face_cmd){
       case 1:
         face_page_1_osr_screen_emoji();
         break;
-      case 2:
-        face_page_2_emoticon();
-        break;
+      // case 2:
+      //   face_page_2_emoticon();
+      //   break;
       default:
-        if (face_page_index < 0) face_page_index = 2;
-        else face_page_index = 0;
         break;
     }
     
@@ -320,6 +324,12 @@ void Screen::display_face(int switch_face_cmd){
 }
 
 void Screen::face_page_0_origin(){
+
+  int number_of_face = 4;
+
+  if (face_index < 0) face_index = number_of_face;
+  if (face_index > number_of_face) face_index = 0;
+  
 	switch (face_index)
   {
     case 0:
@@ -332,37 +342,42 @@ void Screen::face_page_0_origin(){
       eight_bit_face();
       break;
     case 3:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)TEST, 32, 15);
-      emoticon_print_green(2, 6, 1, "NI");
+      NI_logo();
+      break;
+    case 4:
       break;
     default:
-      if (face_index < 0) face_index = 3;
-      else face_index = 0;
       break;
   }
 }
 
 void Screen::face_page_1_osr_screen_emoji(){
+  
+  int number_of_face = 7;
+
+  if (face_index < 0) face_index = number_of_face;
+  if (face_index > number_of_face) face_index = 0;
+  
 	switch (face_index)
   {
-    case 0:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_0, 32, 15);
-      break;
-    case 1:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_1, 32, 15);
-      break;
-    case 2:
+    // case 0:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_0, 32, 15);
+    //   break;
+    // case 1:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_1, 32, 15);
+    //   break;
+    case 0:     //2:
       RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_2, 32, 15);
       break;
-    case 3:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_3, 32, 15);
-      break;
-    case 4:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_4, 32, 15);
-      break;
-    case 5:
-      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_5, 32, 15);
-      break;
+    // case 3:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_3, 32, 15);
+    //   break;
+    // case 4:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_4, 32, 15);
+    //   break;
+    // case 5:
+    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_5, 32, 15);
+    //   break;
     // case 6:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_6, 32, 15);
     //   break;
@@ -378,24 +393,24 @@ void Screen::face_page_1_osr_screen_emoji(){
     // case 10:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_10, 32, 15);
     //   break;
-    // case 11:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_11, 32, 15);
-    //   break;
+    case 1:     //11:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_11, 32, 15);
+      break;
     // case 12:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_12, 32, 15);
     //   break;
     // case 13:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_13, 32, 15);
     //   break;
-    // case 14:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_14, 32, 15);
-    //   break;
+    case 2:     //14:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_14, 32, 15);
+      break;
     // case 15:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_15, 32, 15);
     //   break;
-    // case 16:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_16, 32, 15);
-    //   break;
+    case 3:     //16:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_16, 32, 15);
+      break;
     // case 17:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_17, 32, 15);
     //   break;
@@ -408,9 +423,9 @@ void Screen::face_page_1_osr_screen_emoji(){
     // case 20:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_20, 32, 15);
     //   break;
-    // case 21:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_21, 32, 15);
-    //   break;
+    case 4:     //21:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_21, 32, 15);
+      break;
     // case 22:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_22, 32, 15);
     //   break;
@@ -420,48 +435,46 @@ void Screen::face_page_1_osr_screen_emoji(){
     // case 24:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_24, 32, 15);
     //   break;
-    // case 25:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_25, 32, 15);
-    //   break;
-    // case 26:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_26, 32, 15);
-    //   break;
+    case 5:     //25:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_25, 32, 15);
+      break;
+    case 6:     //26:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_26, 32, 15);
+      break;
     // case 27:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_27, 32, 15);
     //   break;
     // case 28:
     //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_28, 32, 15);
     //   break;
-    // case 29:
-    //   RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_29, 32, 15);
-    //   break;
+    case 7:     //29:
+      RGBmatrixPanel::drawRGBBitmap(0, 1, (const uint16_t *)osr_face_emoji_29, 32, 15);
+      break;
     default:
-      if (face_index < 0) face_index = 5; // 29;
-      else face_index = 0;
       break;
   }
 }
 
 
 void Screen::face_page_2_emoticon(){
+  
+  int number_of_face = 2;
+
+  if (face_index < 0) face_index = number_of_face;
+  if (face_index > number_of_face) face_index = 0;
+  
   switch (face_index)
   {
     case 0:
       emoticon_print_green(2, 6, 1, "NI");
-      // RGBmatrixPanel::setTextSize(2);
-      // RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(GREEN));
-      // RGBmatrixPanel::setCursor(6,1);
-      // RGBmatrixPanel::print("NI");
       break;
     case 1:
       emoticon_print_white(1, 7, 4, "ORZ");
       break;
     case 2:
-      // emoticon_print_white(1, 0, 4, "(╯°Д°)╯");
+      emoticon_print_white(1, 0, 4, "(╯°Д°)╯");
       break;
     default:
-      if (face_index < 0) face_index = 2;
-      else face_index = 0;
       break;
   }
 }
@@ -490,7 +503,24 @@ void Screen::update_screen(int message[]){
   }
 }
 
-
+void Screen::NI_logo(){
+  RGBmatrixPanel::drawLine(7,6,7,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(8,6,8,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(9,6,9,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(10,6,10,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(11,2,11,5,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(12,2,12,5,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(13,2,13,5,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(14,2,14,5,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(15,2,15,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(16,2,16,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(17,3,17,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(18,4,18,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(21,2,21,11,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(22,2,22,12,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(23,2,23,13,RGBmatrixPanel::Color444(GREEN));
+  RGBmatrixPanel::drawLine(24,2,24,13,RGBmatrixPanel::Color444(GREEN));
+}
 
 /**********************************************************************/
 // for face_page_0_origin()
