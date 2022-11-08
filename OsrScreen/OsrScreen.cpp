@@ -458,7 +458,7 @@ void Screen::face_page_1_osr_screen_emoji(){
 
 void Screen::face_page_2_emoticon(){
   
-  int number_of_face = 0;
+  int number_of_face = 9;
 
   if (face_index < 0) face_index = number_of_face;
   if (face_index > number_of_face) face_index = 0;
