@@ -469,6 +469,34 @@ void Screen::face_page_2_emoticon(){
       // emoticon_print_green(2, 6, 1, "NI");
       emoticon_1();
       break;
+      case 1:
+      emoticon_2();
+      break;
+      case 2:
+      emoticon_3();
+      break;
+      case 3:
+      emoticon_4();
+      break;
+      case 4:
+      emoticon_5();
+      break;
+      case 5:
+      emoticon_6();
+      break;
+      case 6:
+      emoticon_7();
+      break;
+      case 7:
+      emoticon_8();
+      break;
+      case 8:
+      emoticon_9();
+      break;
+      case 9:
+      emoticon_10();
+      break;
+
     // case 1:
     //   // emoticon_print_white(1, 7, 4, "ORZ");
     //   break;
@@ -672,4 +700,149 @@ void Screen::emoticon_1(){ //( ╯▽╰)
   RGBmatrixPanel::drawLine(29,4,29,5,RGBmatrixPanel::Color444(WHITE));
   RGBmatrixPanel::drawLine(30,6,30,9,RGBmatrixPanel::Color444(WHITE));
   RGBmatrixPanel::drawLine(29,10,29,11,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_2(){ //（ ￣ー￣）
+RGBmatrixPanel::drawPixel(2,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(1,6,1,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(2,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(7,4,13,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(21,4,27,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(15,8,20,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(30,5,30,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,11,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_3(){ //’(°ー°〃)
+RGBmatrixPanel::drawLine(1,4,1,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(2,6,2,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(3,4,3,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(3,10,3,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(5,4,5,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,4,6,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(9,7,15,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(18,4,18,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(19,4,19,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(23,5,23,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(25,5,25,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(30,5,30,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(23,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(25,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,11,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_4(){ //（╯＿╰）
+RGBmatrixPanel::drawLine(2,5,2,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(8,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(5,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(23,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(26,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(28,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(28,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(8,4,6,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(12,10,19,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(23,4,25,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(29,5,29,9,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_5(){ //(´･_･`) 
+RGBmatrixPanel::drawLine(7,3,6,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(5,4,5,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,11,7,12,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(9,3,8,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(12,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(21,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(14,12,18,12,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(24,3,25,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(26,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(27,4,27,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(26,11,25,12,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_6(){ //(¬､¬)
+RGBmatrixPanel::drawLine(4,2,3,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(2,4,2,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(3,11,4,12,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,6,11,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(11,7,11,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(14,9,15,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(20,6,25,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(25,7,25,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(27,2,28,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(29,4,29,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(28,11,27,12,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_7(){ //=￣ω￣=
+RGBmatrixPanel::drawLine(1,7,4,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(1,9,4,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(5,5,12,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(18,5,25,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(26,7,29,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(26,9,29,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(13,7,12,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(12,9,13,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(15,8,15,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(17,7,18,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(18,9,17,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(14,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(16,10,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_8(){ //（╬￣皿￣）
+RGBmatrixPanel::drawLine(4,3,4,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,3,6,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(4,8,4,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,8,6,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(1,5,1,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(8,4,14,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(15,5,21,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(14,9,22,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(15,6,15,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(17,6,17,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(19,6,19,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(21,6,21,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(22,4,27,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(30,5,30,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(2,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(2,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,4,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(29,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(7,6,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(7,8,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_9(){ //(｡•ᴗ-)_
+RGBmatrixPanel::drawLine(2,4,2,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(1,6,1,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(2,10,2,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(5,9,6,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(4,10,5,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(6,11,7,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(10,6,10,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(11,6,11,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(12,6,12,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(14,8,14,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(15,10,16,10,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(17,8,17,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(19,7,21,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(24,4,24,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(25,6,25,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(24,10,24,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(26,13,30,13,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(3,12,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(23,3,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawPixel(23,12,RGBmatrixPanel::Color444(WHITE));
+}
+void Screen::emoticon_10(){ //（ ＾-＾ ）
+RGBmatrixPanel::drawLine(2,4,2,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(1,6,1,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(2,10,2,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(7,7,9,5,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(10,6,11,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(14,8,16,8,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(19,9,21,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(22,8,23,9,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(29,6,29,7,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(30,8,30,11,RGBmatrixPanel::Color444(WHITE));
+RGBmatrixPanel::drawLine(29,12,29,13,RGBmatrixPanel::Color444(WHITE));
 }

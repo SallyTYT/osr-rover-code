@@ -121,6 +121,15 @@ public:
     // void emoticon_print_green(uint8_t, int16_t, int16_t, String);
     // void emoticon_print_white(uint8_t, int16_t, int16_t, String);
     void emoticon_1(); //( ╯▽╰)
+    void emoticon_2(); 
+    void emoticon_3();
+    void emoticon_4();
+    void emoticon_5();
+    void emoticon_6();
+    void emoticon_7();
+    void emoticon_8();
+    void emoticon_9();
+    void emoticon_10();
 
 };
 
