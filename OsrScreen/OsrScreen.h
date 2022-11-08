@@ -118,8 +118,9 @@ public:
 /**********************************************************************/
 // for face_page_2_emoticon()
 /**********************************************************************/
-    void emoticon_print_green(uint8_t, int16_t, int16_t, String);
-    void emoticon_print_white(uint8_t, int16_t, int16_t, String);
+    // void emoticon_print_green(uint8_t, int16_t, int16_t, String);
+    // void emoticon_print_white(uint8_t, int16_t, int16_t, String);
+    void emoticon_1(); //( ╯▽╰)
 
 };
 

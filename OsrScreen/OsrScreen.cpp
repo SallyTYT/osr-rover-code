@@ -300,7 +300,7 @@ void Screen::display_face(int switch_face_cmd){
   if (update_face) {
     clear_face();
 
-    int number_of_page = 1;
+    int number_of_page = 2;
 
     if (face_page_index < 0) face_page_index = number_of_page;
     if (face_page_index > number_of_page) face_page_index = 0;
@@ -313,9 +313,9 @@ void Screen::display_face(int switch_face_cmd){
       case 1:
         face_page_1_osr_screen_emoji();
         break;
-      // case 2:
-      //   face_page_2_emoticon();
-      //   break;
+      case 2:
+        face_page_2_emoticon();
+        break;
       default:
         break;
     }
@@ -458,7 +458,7 @@ void Screen::face_page_1_osr_screen_emoji(){
 
 void Screen::face_page_2_emoticon(){
   
-  int number_of_face = 2;
+  int number_of_face = 0;
 
   if (face_index < 0) face_index = number_of_face;
   if (face_index > number_of_face) face_index = 0;
@@ -466,14 +466,15 @@ void Screen::face_page_2_emoticon(){
   switch (face_index)
   {
     case 0:
-      emoticon_print_green(2, 6, 1, "NI");
+      // emoticon_print_green(2, 6, 1, "NI");
+      emoticon_1();
       break;
-    case 1:
-      emoticon_print_white(1, 7, 4, "ORZ");
-      break;
-    case 2:
-      emoticon_print_white(1, 0, 4, "(╯°Д°)╯");
-      break;
+    // case 1:
+    //   // emoticon_print_white(1, 7, 4, "ORZ");
+    //   break;
+    // case 2:
+    //   // emoticon_print_white(1, 0, 4, "(╯°Д°)╯");
+    //   break;
     default:
       break;
   }
@@ -640,16 +641,35 @@ void Screen::eight_bit_face(){  //0x03
 /**********************************************************************/
 // for face_page_2_emoticon()
 /**********************************************************************/
-void Screen::emoticon_print_green(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
-  RGBmatrixPanel::setTextSize(size);
-  RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(GREEN));
-  RGBmatrixPanel::setCursor(cursor_x,cursor_y);
-  RGBmatrixPanel::print(emoticon);
-}
+// void Screen::emoticon_print_green(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
+//   RGBmatrixPanel::setTextSize(size);
+//   RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(GREEN));
+//   RGBmatrixPanel::setCursor(cursor_x,cursor_y);
+//   RGBmatrixPanel::print(emoticon);
+// }
 
-void Screen::emoticon_print_white(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
-  RGBmatrixPanel::setTextSize(size);
-  RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(WHITE));
-  RGBmatrixPanel::setCursor(cursor_x,cursor_y);
-  RGBmatrixPanel::print(emoticon);
+// void Screen::emoticon_print_white(uint8_t size, int16_t cursor_x, int16_t cursor_y, String emoticon){
+//   RGBmatrixPanel::setTextSize(size);
+//   RGBmatrixPanel::setTextColor(RGBmatrixPanel::Color444(WHITE));
+//   RGBmatrixPanel::setCursor(cursor_x,cursor_y);
+//   RGBmatrixPanel::print(emoticon);
+// }
+
+void Screen::emoticon_1(){ //( ╯▽╰)
+  RGBmatrixPanel::drawLine(2,4,2,5,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(1,6,1,9,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(2,10,2,11,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(5,6,7,6,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawPixel(8,5,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(9,3,9,4,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(5,6,7,6,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(14,4,19,4,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(14,5,16,8,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(19,5,17,8,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(24,3,24,4,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawPixel(25,5,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(26,6,28,6,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(29,4,29,5,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(30,6,30,9,RGBmatrixPanel::Color444(WHITE));
+  RGBmatrixPanel::drawLine(29,10,29,11,RGBmatrixPanel::Color444(WHITE));
 }
