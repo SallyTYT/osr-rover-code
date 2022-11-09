@@ -842,7 +842,7 @@ RGBmatrixPanel::drawLine(10,8,11,9,RGBmatrixPanel::Color444(BLUE));
 RGBmatrixPanel::drawLine(14,8,16,8,RGBmatrixPanel::Color444(BLUE));
 RGBmatrixPanel::drawLine(19,9,21,7,RGBmatrixPanel::Color444(BLUE));
 RGBmatrixPanel::drawLine(22,8,23,9,RGBmatrixPanel::Color444(BLUE));
-RGBmatrixPanel::drawLine(29,6,29,7,RGBmatrixPanel::Color444(BLUE));
-RGBmatrixPanel::drawLine(30,8,30,11,RGBmatrixPanel::Color444(BLUE));
-RGBmatrixPanel::drawLine(29,12,29,13,RGBmatrixPanel::Color444(BLUE));
+RGBmatrixPanel::drawLine(29,4,29,5,RGBmatrixPanel::Color444(BLUE));
+RGBmatrixPanel::drawLine(30,6,30,9,RGBmatrixPanel::Color444(BLUE));
+RGBmatrixPanel::drawLine(29,10,29,11,RGBmatrixPanel::Color444(BLUE));
 }
